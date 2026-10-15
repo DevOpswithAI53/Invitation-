@@ -3,23 +3,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Josefin+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--iv:#fcf3e8;--cr:#f7e8d6;--gold:#c4953f;--g2:#e6c477;--ink:#7b5b34;--mut:#a38660;--sc:"Great Vibes","Snell Roundhand",cursive;--sf:"Cormorant Garamond",Georgia,serif;--lb:"Josefin Sans",system-ui,sans-serif;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--iv)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--iv);font-size:clamp(16px,2.4vw,20px);-webkit-text-size-adjust:100%;--cw:min(100vw,600px)}
 *{box-sizing:border-box}
 body{margin:0;background:#efe0cc;color:var(--ink);font-family:var(--sf);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 body.lock{overflow:hidden}
-.pg{max-width:460px;margin:0 auto;position:relative;overflow:hidden;background:linear-gradient(#f8e8d3,#fcf3e8 25%,#f9ecda);box-shadow:0 0 40px rgba(120,80,30,.18)}
+.pg{max-width:var(--cw);margin:0 auto;position:relative;overflow:hidden;background:linear-gradient(#f8e8d3,#fcf3e8 25%,#f9ecda);box-shadow:0 0 40px rgba(120,80,30,.18)}
 .gt{background:linear-gradient(100deg,#9a6b25,#d8ad55 25%,#9a6b25 50%,#d8ad55 75%,#9a6b25);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 7s linear infinite}
 @keyframes sh{to{background-position:-200% 0}}
 .emb{filter:drop-shadow(.8px 1px 0 rgba(255,255,255,.9)) drop-shadow(-.6px -.6px .6px rgba(150,105,55,.35))}
 /* envelope */
-#env{position:fixed;inset:0;z-index:50;overflow:hidden;background:#f6e3cc;perspective:1100px;transition:opacity .9s ease}
+#env{position:fixed;inset:0;z-index:50;overflow:hidden;background:#efe0cc;perspective:1100px;transition:opacity .9s ease}
 #env.gone{opacity:0;pointer-events:none}
-.half{position:absolute;left:0;right:0;height:50%;overflow:hidden;z-index:2;backface-visibility:hidden;will-change:transform;transition:transform 1.5s cubic-bezier(.55,0,.25,1) .5s,filter 1.5s ease .5s}
+.half{position:absolute;left:50%;width:var(--cw);margin-left:calc(var(--cw)/-2);height:50%;overflow:hidden;z-index:2;backface-visibility:hidden;will-change:transform;transition:transform 1.5s cubic-bezier(.55,0,.25,1) .5s,filter 1.5s ease .5s}
 .half.t{top:0;transform-origin:50% 0}.half.b{bottom:0;transform-origin:50% 100%}
 .half svg{position:absolute;left:0;width:100%;height:200%;display:block}
 .t svg{top:0}.b svg{bottom:0}
 #env.open .t{transform:rotateX(-100deg);filter:brightness(.8)}#env.open .b{transform:rotateX(100deg);filter:brightness(.8)}
-.rays{position:absolute;inset:0;background:linear-gradient(#b98230,#e3bb66 32%,#fbeab8 50%,#e3bb66 68%,#b98230);opacity:0;transition:opacity 1.2s .3s}
+.rays{position:absolute;top:0;bottom:0;left:50%;width:var(--cw);margin-left:calc(var(--cw)/-2);background:linear-gradient(#b98230,#e3bb66 32%,#fbeab8 50%,#e3bb66 68%,#b98230);opacity:0;transition:opacity 1.2s .3s}
 .rays::before,.rays::after{content:"";position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
 .rays::before{width:150%;height:22%;background:radial-gradient(ellipse,#fffdf0 0,rgba(255,240,180,.75) 30%,rgba(255,225,140,0) 70%);filter:blur(10px);animation:br 4s ease-in-out infinite alternate}
 .rays::after{width:200px;height:200px;background:radial-gradient(circle,rgba(255,255,240,.95),rgba(255,235,160,0) 70%);filter:blur(6px);animation:br 3s ease-in-out infinite alternate}
