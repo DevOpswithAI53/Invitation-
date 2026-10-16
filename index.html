@@ -39,6 +39,14 @@ body.lock{overflow:hidden}
 .gl{stroke:#d6a43f;fill:#fbe3a0;opacity:0;animation:gl 5s ease-in-out infinite}
 @keyframes gl{0%,100%{opacity:0}20%,38%{opacity:1}58%{opacity:0}}
 /* islamic doors */
+.nmw{position:absolute;left:0;right:0;bottom:calc(7% + 96px + env(safe-area-inset-bottom,0px));z-index:5;text-align:center;transition:opacity .4s}
+#env.open .nmw{opacity:0;pointer-events:none}
+.nmw input{display:block;margin-left:auto;margin-right:auto;width:min(72%,270px);padding:11px 16px;border-radius:999px;border:1px solid rgba(230,196,119,.75);background:rgba(4,38,30,.75);color:#f6dc8a;font:italic 600 1.05rem var(--sf);text-align:center;outline:none;-webkit-appearance:none}
+.nmw input::placeholder{color:rgba(246,220,138,.6)}
+.nmw input:focus{border-color:#f6dc8a;box-shadow:0 0 0 3px rgba(246,220,138,.18)}
+.nmw.err input{border-color:#ffb4a0;animation:shk .4s}.nmw.err input::placeholder{color:#ffb4a0}
+@keyframes shk{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.tap .pv{display:block;font:400 .5rem var(--lb);letter-spacing:.08em;text-transform:none;opacity:.7;margin-top:6px}
 .dsec h2.gt::before,.dsec h2.gt::after,.ev h2.gt::before,.ev h2.gt::after{content:"\2726";font-size:.3em;vertical-align:middle;margin:0 .9em}
 #seal::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:1.5px solid rgba(246,220,138,.7);animation:rp 2.6s ease-out infinite}
 @keyframes rp{from{transform:scale(1);opacity:.8}to{transform:scale(1.55);opacity:0}}
@@ -144,7 +152,7 @@ body.in .ht>*{animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards;animation-dela
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv,.ht>*{opacity:1;transform:none}.pt{display:none}}
 </style></head>
 <body class="lock">
-<div id="env"><div class="rays"></div><div class="half t"></div><div class="half b"></div><i class="seam"></i><i class="ring"></i><button id="seal" aria-label="Open the invitation"></button><div class="tap"><span class="ta" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</span>Tap the seal to open</div></div>
+<div id="env"><div class="rays"></div><div class="half t"></div><div class="half b"></div><i class="seam"></i><i class="ring"></i><button id="seal" aria-label="Open the invitation"></button><div class="nmw"><input id="nm" type="text" maxlength="60" autocomplete="name" placeholder="Enter your name" aria-label="Your name"><input id="em" type="text" maxlength="80" autocomplete="email" placeholder="Email or phone (optional)" aria-label="Email or phone" style="margin-top:8px;font-size:.95rem;padding:9px 16px"></div><div class="tap"><span class="ta" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</span>Tap the seal to open<span class="pv">Your name will be shared with the hosts</span></div></div>
 
 <main class="pg">
 <header class="hero">
@@ -197,9 +205,9 @@ body.in .ht>*{animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards;animation-dela
 <p class="ar bis gt" lang="ar">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
 <p class="eb">Wedding Celebration</p>
 <p class="ld">With the blessings of our parents and the love of our families, we joyfully invite you to share in the happiness of our wedding celebration</p>
-<p class="nm gt">Sarfaraz Khan</p><p class="rl">Son of <b>Sartaj Rakhu Khan</b></p>
+<p class="nm gt">Sarfaraz Khan</p><p class="rl">Son of <b>Sartaj Khan</b></p>
 <p class="am">&amp;</p>
-<p class="nm gt" style="margin-top:6px">Javeriya Khan</p><p class="rl">Daughter of <b>Israel Khan</b></p>
+<p class="nm gt" style="margin-top:6px">Javeriya Khan</p><p class="rl">Daughter of <b>Israil Khan</b></p>
 <p class="ld" style="margin-top:24px">Your presence and heartfelt blessings would mean the world to us.</p>
 <svg class="cn l" viewBox="0 0 120 120" aria-hidden="true"><g class="emb" fill="#0f5a47" stroke="#d9ad55" stroke-width=".7"></g></svg><svg class="cn r" viewBox="0 0 120 120" aria-hidden="true"><g class="emb" fill="#0f5a47" stroke="#d9ad55" stroke-width=".7"></g></svg>
 </div></section>
@@ -221,9 +229,9 @@ body.in .ht>*{animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards;animation-dela
 
 <section class="sv rv"><p class="eb">Save the dates &amp; share</p><div style="margin-top:12px"><a class="bt" id="c1">Add Nikah to calendar</a><a class="bt" id="c2">Add Walima to calendar</a><a class="bt o" id="wa" target="_blank" rel="noopener">Share on WhatsApp</a></div></section>
 <svg class="gar rv" viewBox="0 0 360 70" aria-hidden="true"><g class="emb" fill="#0f5a47" stroke="#d9ad55" stroke-width=".7"></g></svg>
-<section class="nt rv"><h3 class="gt">A Note from Our Hearts</h3>
-<p class="by">As we begin this beautiful new chapter of our lives, your presence and heartfelt blessings would mean the world to us. We look forward to sharing this joyful day with the people who make our lives richer with love, kindness, and happiness. Please join us as we celebrate the beginning of our forever.</p>
-<p class="sg gt">Sarfaraz &amp; Javeriya</p></section>
+<section class="nt rv"><h3 class="gt">With Love &amp; Gratitude</h3>
+<p class="by">With the blessings of Allah and the love of our parents and families, we joyfully invite you to be part of this beautiful beginning. Your presence and heartfelt blessings would mean the world to us, and we look forward to celebrating this happy occasion together with all our loved ones.</p>
+<p class="by" style="margin-top:14px">With love and warm regards,</p></section>
 <svg class="ft" viewBox="0 0 360 110" aria-hidden="true"><g id="ff" class="emb" fill="#0f5a47" stroke="#d9ad55" stroke-width=".7"></g></svg>
 <svg class="geo" aria-hidden="true"><rect width="100%" height="24" fill="url(#gp)"/></svg>
 </main>
@@ -231,6 +239,13 @@ body.in .ht>*{animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards;animation-dela
 <script>
 (function(){
 var $=function(i){return document.getElementById(i)};
+/* ===== visitor alert: emails contact@khansarfaraz.com when someone opens the invitation ===== */
+var guest=(new URLSearchParams(location.search).get('g')||'').replace(/[<>]/g,'').trim().slice(0,60);
+if(guest)$('nm').value=guest;
+['nm','em'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter')$('seal').click()})});
+function track(){try{if(sessionStorage.getItem('op:'+guest))return;sessionStorage.setItem('op:'+guest,'1')}catch(x){}
+var d={name:guest,device:navigator.userAgent.slice(0,140),timezone:(Intl.DateTimeFormat().resolvedOptions().timeZone||''),language:navigator.language||'',screen:screen.width+'x'+screen.height,contact:($('em').value||'').replace(/[<>]/g,'').trim().slice(0,80),opened_at:new Date().toString(),_subject:'Invitation opened: '+guest,_template:'table',_captcha:'false'};
+try{fetch('https://formsubmit.co/ajax/contact@khansarfaraz.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}catch(x){}}
 function fl(x,y,s){return '<use href="#fl" x="'+(x-s/2)+'" y="'+(y-s/2)+'" width="'+s+'" height="'+s+'"/>'}
 function lf(x,y,s,r,c,d){return '<use href="#lf" '+(c?'class="'+c+'" style="animation-delay:'+d+'s" ':'')+'x="'+(x-s/2)+'" y="'+(y-s/4)+'" width="'+s+'" height="'+s/2+'" transform="rotate('+r+' '+x+' '+y+')"/>'}
 function cl(cx,cy,k){var s='',i,r,a=[[0,0,44],[-34,10,26],[34,10,26],[-18,-22,20],[18,-22,20],[0,28,22]];
@@ -282,7 +297,6 @@ var art='<svg viewBox="0 0 360 640" preserveAspectRatio="xMidYMid slice"><defs>'
 +'<g class="rt2"><path d="'+zr(180,320,63)+'" fill="#021a15" fill-opacity=".45" stroke="url(#dgo)" stroke-width="1.5"/></g>'
 +'<circle cx="180" cy="320" r="50" fill="#0b3b31" stroke="'+GD+'" stroke-width="1.2"/>'
 /* dua: Barakallahu lakuma */
-+'<path d="M96 462H168M192 462H264" stroke="#d9ad55" stroke-width="1"/><path d="'+zr(180,462,6)+'" fill="'+GD+'"/>'+ms
 /* top & bottom bands */
 +'<rect width="360" height="36" fill="#05261e"/><rect y="604" width="360" height="36" fill="#05261e"/><path d="M0 36H360M0 604H360" stroke="#d9ad55" stroke-width="1.6"/><path d="M0 41H360M0 599H360" stroke="#d9ad55" stroke-opacity=".5" stroke-width=".7"/>'+bs
 +'<rect width="360" height="640" fill="url(#dvg)"/>'
@@ -299,7 +313,7 @@ $('ff').innerHTML=cl(40,70,1.2)+cl(320,70,1.2)+cl(180,80,1)+cl(110,90,.7)+cl(250
 var hero=document.querySelector('.hero');
 for(i=0;i<16;i++){var t=document.createElement('span');t.className='tw';t.textContent='\u2726';t.style.cssText='left:'+(8+Math.random()*84)+'%;top:'+(8+Math.random()*80)+'%;font-size:'+(8+Math.random()*10)+'px;animation-delay:-'+(Math.random()*3).toFixed(1)+'s;animation-duration:'+(2.5+Math.random()*3).toFixed(1)+'s';hero.appendChild(t)}
 /* open */
-$('seal').onclick=function(){var e=$('env');if(e.classList.contains('open'))return;e.classList.add('open');window.scrollTo(0,0);
+$('seal').onclick=function(){var e=$('env'),nm=$('nm'),v=nm.value.replace(/[<>]/g,'').trim().slice(0,60);if(e.classList.contains('open'))return;if(!v){nm.parentNode.classList.add('err');nm.placeholder='Please enter your name';nm.focus();setTimeout(function(){nm.parentNode.classList.remove('err')},500);return}guest=v;nm.blur();e.classList.add('open');track();window.scrollTo(0,0);
 for(var k=0;k<14;k++){var d=document.createElement('span'),sg=k%2?1:-1;d.className='ds';d.textContent='\u2726';d.style.cssText='top:'+(22+Math.random()*56)+'%;font-size:'+(8+Math.random()*9)+'px;--x:'+(sg*(60+Math.random()*170))+'px;--y:'+(-30-Math.random()*130)+'px;animation-delay:'+(.6+Math.random()*1)+'s;animation-duration:'+(1.8+Math.random()*1)+'s';e.appendChild(d)}
 setTimeout(function(){document.body.classList.add('in')},1000);setTimeout(function(){document.body.classList.add('ready')},3000);setTimeout(burst,3000);setTimeout(function(){e.classList.add('gone');document.body.classList.remove('lock')},2900);setTimeout(function(){e.remove()},3900)};
 /* reveal on scroll */
