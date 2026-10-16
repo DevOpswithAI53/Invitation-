@@ -33,7 +33,7 @@ body.lock{overflow:hidden}
 #seal:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:50%}
 @keyframes glow{50%{filter:drop-shadow(0 0 12px rgba(255,205,110,.75))}}
 #env.open #seal{transform:scale(1.3) rotate(90deg);opacity:0;animation:none;filter:drop-shadow(0 0 22px rgba(255,232,160,.95))}
-.tap{position:absolute;left:0;right:0;bottom:calc(7% + env(safe-area-inset-bottom,0px));text-align:center;font:600 .66rem var(--lb);letter-spacing:.3em;text-transform:uppercase;color:#f3dc9a;text-shadow:0 1px 6px rgba(0,30,20,.7);z-index:5;animation:pl 2.2s infinite;transition:opacity .4s}
+.tap{position:absolute;left:0;right:0;bottom:calc(7% + env(safe-area-inset-bottom,0px));text-align:center;font:600 .66rem var(--lb);letter-spacing:.16em;text-transform:uppercase;color:#f3dc9a;text-shadow:0 1px 6px rgba(0,30,20,.7);z-index:5;animation:pl 2.2s infinite;transition:opacity .4s}
 #env.open .tap{animation:none;opacity:0}
 @keyframes pl{50%{opacity:.3}}
 .gl{stroke:#d6a43f;fill:#fbe3a0;opacity:0;animation:gl 5s ease-in-out infinite}
@@ -152,7 +152,7 @@ body.in .ht>*{animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards;animation-dela
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.rv,.ht>*{opacity:1;transform:none}.pt{display:none}}
 </style></head>
 <body class="lock">
-<div id="env"><div class="rays"></div><div class="half t"></div><div class="half b"></div><i class="seam"></i><i class="ring"></i><button id="seal" aria-label="Open the invitation"></button><div class="nmw"><input id="nm" type="text" maxlength="60" autocomplete="name" placeholder="Enter your name" aria-label="Your name"><input id="em" type="text" maxlength="80" autocomplete="email" placeholder="Email or phone (optional)" aria-label="Email or phone" style="margin-top:8px;font-size:.95rem;padding:9px 16px"></div><div class="tap"><span class="ta" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</span>Tap the seal to open<span class="pv">Your name will be shared with the hosts</span></div></div>
+<div id="env"><div class="rays"></div><div class="half t"></div><div class="half b"></div><i class="seam"></i><i class="ring"></i><button id="seal" aria-label="Open the invitation"></button><div class="nmw"><input id="nm" type="text" maxlength="60" autocomplete="name" placeholder="Please enter your name" aria-label="Your name"></div><div class="tap"><span class="ta" lang="ar">ٱلسَّلَامُ عَلَيْكُمْ</span>Enter your name &amp; tap the seal<span class="pv">Your name will be shared with the hosts</span></div></div>
 
 <main class="pg">
 <header class="hero">
@@ -242,9 +242,9 @@ var $=function(i){return document.getElementById(i)};
 /* ===== visitor alert: emails contact@khansarfaraz.com when someone opens the invitation ===== */
 var guest=(new URLSearchParams(location.search).get('g')||'').replace(/[<>]/g,'').trim().slice(0,60);
 if(guest)$('nm').value=guest;
-['nm','em'].forEach(function(i){$(i).addEventListener('keydown',function(e){if(e.key==='Enter')$('seal').click()})});
+$('nm').addEventListener('keydown',function(e){if(e.key==='Enter')$('seal').click()});
 function track(){try{if(sessionStorage.getItem('op:'+guest))return;sessionStorage.setItem('op:'+guest,'1')}catch(x){}
-var d={name:guest,device:navigator.userAgent.slice(0,140),timezone:(Intl.DateTimeFormat().resolvedOptions().timeZone||''),language:navigator.language||'',screen:screen.width+'x'+screen.height,contact:($('em').value||'').replace(/[<>]/g,'').trim().slice(0,80),opened_at:new Date().toString(),_subject:'Invitation opened: '+guest,_template:'table',_captcha:'false'};
+var d={name:guest,device:navigator.userAgent.slice(0,140),timezone:(Intl.DateTimeFormat().resolvedOptions().timeZone||''),language:navigator.language||'',screen:screen.width+'x'+screen.height,opened_at:new Date().toString(),_subject:'Invitation opened: '+guest,_template:'table',_captcha:'false'};
 try{fetch('https://formsubmit.co/ajax/contact@khansarfaraz.com',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}catch(x){}}
 function fl(x,y,s){return '<use href="#fl" x="'+(x-s/2)+'" y="'+(y-s/2)+'" width="'+s+'" height="'+s+'"/>'}
 function lf(x,y,s,r,c,d){return '<use href="#lf" '+(c?'class="'+c+'" style="animation-delay:'+d+'s" ':'')+'x="'+(x-s/2)+'" y="'+(y-s/4)+'" width="'+s+'" height="'+s/2+'" transform="rotate('+r+' '+x+' '+y+')"/>'}
@@ -362,8 +362,9 @@ document.querySelectorAll('.cn g').forEach(function(g){g.innerHTML=cl(66,70,1.05
 var cs=['#f6dc8a','#e6c477','#f0d489','#c4953f'];
 for(i=0;i<9;i++){var q=document.createElement('span'),sz=8+Math.random()*8;q.className='hp';q.style.cssText='width:'+sz+'px;height:'+sz*1.15+'px;left:'+Math.random()*100+'%;background:'+cs[i%4]+';--dx:'+(Math.random()*140-70)+'px;--r:'+(360+Math.random()*500)+'deg;animation-duration:'+(11+Math.random()*9)+'s;animation-delay:-'+(Math.random()*12).toFixed(1)+'s';hero.appendChild(q)}
 function ics(t,d,n){var e=d.replace(/-/g,''),f=new Date(Date.UTC(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10)+1)).toISOString().slice(0,10).replace(/-/g,'');return 'data:text/calendar;charset=utf8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Sarfaraz and Javeriya//EN','BEGIN:VEVENT','UID:'+e+'@khansarfaraz.com','DTSTAMP:20261016T000000Z','DTSTART;VALUE=DATE:'+e,'DTEND;VALUE=DATE:'+f,'SUMMARY:'+t,'DESCRIPTION:'+n,'END:VEVENT','END:VCALENDAR'].join('\r\n'))}
-$('c1').href=ics('Nikah of Sarfaraz & Javeriya','2026-12-25','Baad Namaz-e-Maghrib');$('c1').download='nikah.ics';
-$('c2').href=ics('Walima of Sarfaraz & Javeriya','2026-12-27','Time will be shared soon');$('c2').download='walima.ics';
+function gcal(t,d,n){var e=d.replace(/-/g,''),f=new Date(Date.UTC(+d.slice(0,4),+d.slice(5,7)-1,+d.slice(8,10)+1)).toISOString().slice(0,10).replace(/-/g,'');return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(t)+'&dates='+e+'/'+f+'&details='+encodeURIComponent(n)}
+var ios=/iP(hone|ad|od)/.test(navigator.userAgent);
+[['c1','Nikah of Sarfaraz & Javeriya','2026-12-25','Baad Namaz-e-Maghrib','nikah.ics'],['c2','Walima of Sarfaraz & Javeriya','2026-12-27','Time will be shared soon','walima.ics']].forEach(function(v){var el=$(v[0]);if(ios){el.href=ics(v[1],v[2],v[3]);el.download=v[4]}else{el.href=gcal(v[1],v[2],v[3]);el.target='_blank';el.rel='noopener'}});
 $('wa').href='https://wa.me/?text='+encodeURIComponent('You are warmly invited to our Nikah & Walima. https://khansarfaraz.com');
 })();
 </script>
