@@ -7,7 +7,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--iv);font-s
 *{box-sizing:border-box}
 body{margin:0;background:#031a15;color:var(--ink);font-family:var(--sf);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
 body.lock{overflow:hidden}
-.pg{max-width:var(--cw);margin:0 auto;position:relative;overflow:hidden;background:#083a2e;box-shadow:0 0 40px rgba(0,0,0,.55)}
+.pg{max-width:var(--cw);margin:0 auto;position:relative;overflow:hidden;background:#083a2e url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><g fill='none' stroke='%23e6c477' stroke-opacity='.1' stroke-width='.8'><path d='M32.0 8.0L39.0 15.0L49.0 15.0L49.0 25.0L56.0 32.0L49.0 39.0L49.0 49.0L39.0 49.0L32.0 56.0L25.0 49.0L15.0 49.0L15.0 39.0L8.0 32.0L15.0 25.0L15.0 15.0L25.0 15.0Z'/><circle cx='32' cy='32' r='3'/><path d='M0 0L8 0L0 8ZM64 0L56 0L64 8ZM0 64L8 64L0 56ZM64 64L56 64L64 56Z'/></g></svg>");box-shadow:0 0 40px rgba(0,0,0,.55)}
 .gt{background:linear-gradient(100deg,#c4953f,#f8e19a 25%,#c4953f 50%,#f8e19a 75%,#c4953f);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 7s linear infinite}
 @keyframes sh{to{background-position:-200% 0}}
 .emb{filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
@@ -38,6 +38,11 @@ body.lock{overflow:hidden}
 @keyframes pl{50%{opacity:.3}}
 .gl{stroke:#d6a43f;fill:#fbe3a0;opacity:0;animation:gl 5s ease-in-out infinite}
 @keyframes gl{0%,100%{opacity:0}20%,38%{opacity:1}58%{opacity:0}}
+/* merged scratch card + timers */
+.box.wide.mg{aspect-ratio:1/.86;border-radius:18px;border-width:1.5px;box-shadow:0 10px 26px rgba(0,0,0,.4),inset 0 0 0 4px rgba(230,196,119,.14)}
+.e1{display:flex;flex-direction:column;align-items:center;gap:5px}.mg .dv{gap:12px}.mg .dv em{font-size:1.05rem}.mg .dv .eb{margin:0}
+#tms{margin-top:8px}#tms.show{animation:cdIn 1.2s ease both}#tms .cd{margin-top:0}
+.tl{font:600 .62rem var(--lb);letter-spacing:.3em;text-transform:uppercase;color:#e6c477;margin:26px 0 12px}.tl::before,.tl::after{content:"\2726";margin:0 9px;color:#c4953f}
 /* islamic doors */
 .nmw{position:absolute;left:0;right:0;bottom:calc(7% + 96px + env(safe-area-inset-bottom,0px));z-index:5;text-align:center;transition:opacity .4s}
 #env.open .nmw{opacity:0;pointer-events:none}
@@ -192,11 +197,15 @@ body.in .ht>*{animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards;animation-dela
 
 <svg class="gar rv" viewBox="0 0 360 70" aria-hidden="true"><g class="emb" fill="#0f5a47" stroke="#d9ad55" stroke-width=".7"></g></svg>
 <section class="dsec" style="padding-top:0">
-<h2 class="gt rv">The Date</h2>
-<p class="hint rv" style="--d:.15s">Scratch to reveal the date &amp; time</p>
-<div class="box wide rv" style="--d:.3s"><div class="dv"><span class="eb">Nikah &middot; Friday</span><b>25 December 2026</b><i class="or2"></i><em>Baad Namaz-e-Maghrib</em></div><canvas></canvas></div>
-<div class="cd" id="cd" hidden><div><b id="cD">--</b><span>Days</span></div><div><b id="cH">--</b><span>Hours</span></div><div><b id="cM">--</b><span>Minutes</span></div><div><b id="cS">--</b><span>Seconds</span></div></div>
+<h2 class="gt rv">The Dates</h2>
+<p class="hint rv" style="--d:.15s">Scratch to reveal the dates</p>
+<div class="box wide mg rv" style="--d:.3s"><div class="dv"><div class="e1"><span class="eb">Nikah &middot; Friday</span><b>25 December 2026</b><em>Baad Namaz-e-Maghrib</em></div><i class="or2"></i><div class="e1"><span class="eb">Walima &middot; Sunday</span><b>27 December 2026</b><em>Time will be shared with you soon</em></div></div><canvas></canvas></div>
+<div id="tms" hidden>
+<p class="tl">Nikah begins in</p><div class="cd" id="cd"><div><b id="cD">--</b><span>Days</span></div><div><b id="cH">--</b><span>Hours</span></div><div><b id="cM">--</b><span>Minutes</span></div><div><b id="cS">--</b><span>Seconds</span></div></div>
 <p class="done gt" id="done" hidden>The celebration has begun</p>
+<p class="tl">Walima begins in</p><div class="cd" id="wcd"><div><b id="wD">--</b><span>Days</span></div><div><b id="wH">--</b><span>Hours</span></div><div><b id="wM">--</b><span>Minutes</span></div><div><b id="wS">--</b><span>Seconds</span></div></div>
+<p class="done gt" id="wdone" hidden>The celebration has begun</p>
+</div>
 </section>
 
 <section class="inv rv">
@@ -217,15 +226,8 @@ body.in .ht>*{animation:up 1.3s cubic-bezier(.2,.7,.2,1) forwards;animation-dela
 <svg class="or"><use href="#or"/></svg></section>
 
 <svg class="gar rv" viewBox="0 0 360 70" aria-hidden="true"><g class="emb" fill="#0f5a47" stroke="#d9ad55" stroke-width=".7"></g></svg>
-<section class="dsec">
-<svg class="or rv"><use href="#or"/></svg>
-<p class="eb rv" style="margin-top:26px">You are also invited to the</p>
-<h2 class="gt rv" style="--d:.1s">Walima</h2>
-<p class="hint rv" style="--d:.15s;margin-top:10px">Scratch to reveal the date &amp; time</p>
-<div class="box wide rv" style="--d:.3s"><div class="dv"><span class="eb">Walima &middot; Sunday</span><b>27 December 2026</b><i class="or2"></i><em>Time will be shared with you soon</em></div><canvas></canvas></div>
-<div class="cd" id="wcd" hidden><div><b id="wD">--</b><span>Days</span></div><div><b id="wH">--</b><span>Hours</span></div><div><b id="wM">--</b><span>Minutes</span></div><div><b id="wS">--</b><span>Seconds</span></div></div>
-<p class="done gt" id="wdone" hidden>The celebration has begun</p>
-</section>
+<section class="ev rv"><svg class="or"><use href="#or"/></svg><p class="eb" style="margin-top:26px">You are also invited to the</p><h2 class="gt">Walima</h2>
+<p class="vn">Venue details will be shared with you soon.</p></section>
 
 <section class="sv rv"><p class="eb">Save the dates &amp; share</p><div style="margin-top:12px"><a class="bt" id="c1">Add Nikah to calendar</a><a class="bt" id="c2">Add Walima to calendar</a><a class="bt o" id="wa" target="_blank" rel="noopener">Share on WhatsApp</a></div></section>
 <svg class="gar rv" viewBox="0 0 360 70" aria-hidden="true"><g class="emb" fill="#0f5a47" stroke="#d9ad55" stroke-width=".7"></g></svg>
@@ -327,7 +329,7 @@ function scratch(cv){var x=cv.getContext('2d'),w,h,dn=false,lp=null,mv=0,fin=fal
 function paint(){var b=cv.parentNode.getBoundingClientRect();w=b.width;h=b.height;cv.width=w*dpr;cv.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);
 var g=x.createLinearGradient(0,0,w,h);g.addColorStop(0,'#f0d68f');g.addColorStop(.3,'#c9993f');g.addColorStop(.55,'#f4e0a6');g.addColorStop(.8,'#bd8a33');g.addColorStop(1,'#e8c777');x.fillStyle=g;x.fillRect(0,0,w,h);
 x.strokeStyle='rgba(255,255,255,.22)';x.lineWidth=1.2;for(var i=-h;i<w;i+=6){x.beginPath();x.moveTo(i,h);x.lineTo(i+h,0);x.stroke()}
-var s=x.createRadialGradient(w*.3,h*.25,0,w*.3,h*.25,w*.7);s.addColorStop(0,'rgba(255,255,255,.6)');s.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=s;x.fillRect(0,0,w,h);x.fillStyle='#7a5320';x.textAlign='center';x.textBaseline='middle';x.font='600 '+Math.max(11,w*.032)+'px "Josefin Sans",sans-serif';try{x.letterSpacing='3px'}catch(e){}x.fillText('SCRATCH HERE',w/2,h/2);try{x.letterSpacing='0px'}catch(e){}}
+var s=x.createRadialGradient(w*.3,h*.25,0,w*.3,h*.25,w*.7);s.addColorStop(0,'rgba(255,255,255,.6)');s.addColorStop(1,'rgba(255,255,255,0)');x.fillStyle=s;x.fillRect(0,0,w,h);x.fillStyle='#7a5320';x.textAlign='center';x.textBaseline='middle';x.font='600 '+Math.max(11,w*.032)+'px "Josefin Sans",sans-serif';try{x.letterSpacing='3px'}catch(e){}(function(){var R=Math.min(w,h)*.34,cx=w/2,cy=h/2;x.strokeStyle='rgba(122,83,32,.5)';x.lineWidth=1.3;for(var q=0;q<2;q++){x.beginPath();for(var k=0;k<4;k++){var an=k*Math.PI/2+q*Math.PI/4-Math.PI/4;x[k?'lineTo':'moveTo'](cx+R*Math.cos(an),cy+R*Math.sin(an))}x.closePath();x.stroke()}x.beginPath();x.arc(cx,cy,R*1.12,0,6.2832);x.stroke();x.beginPath();x.arc(cx,cy,R*1.2,0,6.2832);x.globalAlpha=.5;x.stroke();x.globalAlpha=1})();x.fillText('SCRATCH TO REVEAL',w/2,h/2);try{x.letterSpacing='0px'}catch(e){}}
 function cleared(){var da=x.getImageData(0,0,cv.width,cv.height).data,st=Math.max(4,Math.round(6*dpr)),t=0,hit=0,rl=cv.width*4;for(var yy=0;yy<cv.height;yy+=st)for(var xx=0;xx<cv.width;xx+=st){t++;if(da[yy*rl+xx*4+3]<128)hit++}return hit/t}
 function fin_(){if(fin)return;fin=true;cv.classList.add('gone');burst();(cv.done||showTimer)()}
 function pos(e){var b=cv.getBoundingClientRect();return{x:(e.clientX-b.left)*(w/b.width),y:(e.clientY-b.top)*(h/b.height)}}
@@ -341,15 +343,13 @@ document.querySelectorAll('.box canvas').forEach(scratch);
 /* countdown (sits under the scratch tiles) */
 var tg=new Date('2026-12-25T17:45:00+05:30').getTime();
 function pd(v){return v<10?'0'+v:''+v}
-var over=0;function showTimer(){if(over)$('done').hidden=false;else{$('cd').hidden=false;$('cd').classList.add('show')}}
+var over=0;function showTimer(){$('tms').hidden=false;$('tms').classList.add('show')}
 function tick(){var df=tg-Date.now();if(df<=0){over=1;if(!$('cd').hidden){$('cd').hidden=true;$('done').hidden=false}return}var s=Math.floor(df/1000);
 $('cD').textContent=pd(Math.floor(s/86400));$('cH').textContent=pd(Math.floor(s%86400/3600));$('cM').textContent=pd(Math.floor(s%3600/60));$('cS').textContent=pd(s%60)}
 tick();setInterval(tick,1000);
 var tg2=new Date('2026-12-27T00:00:00+05:30').getTime(),over2=0;
-function showTimer2(){if(over2)$('wdone').hidden=false;else{$('wcd').hidden=false;$('wcd').classList.add('show')}}
 function tick2(){var df=tg2-Date.now();if(df<=0){over2=1;if(!$('wcd').hidden){$('wcd').hidden=true;$('wdone').hidden=false}return}var s=Math.floor(df/1000);$('wD').textContent=pd(Math.floor(s/86400));$('wH').textContent=pd(Math.floor(s%86400/3600));$('wM').textContent=pd(Math.floor(s%3600/60));$('wS').textContent=pd(s%60)}
 tick2();setInterval(tick2,1000);
-document.querySelectorAll('.box canvas')[1].done=showTimer2;
 function gr(){var s='<path d="M0 36Q45 14 90 36T180 36T270 36T360 36" fill="none" stroke="#d3ad62" stroke-width="1"/>',x,y;
 for(x=12;x<360;x+=24){y=36-11*Math.sin(x*Math.PI/90);s+=lf(x+6,y-5,16,-30)+lf(x-4,y+5,16,150)}
 for(x=30;x<360;x+=60){y=36-11*Math.sin(x*Math.PI/90);s+=fl(x,y,x%120?18:24)}
