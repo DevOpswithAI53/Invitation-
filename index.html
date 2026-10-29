@@ -243,9 +243,10 @@ var $=function(i){return document.getElementById(i)};
 var guest=(new URLSearchParams(location.search).get('g')||'').replace(/[<>]/g,'').trim().slice(0,60);
 if(guest)$('nm').value=guest;
 $('nm').addEventListener('keydown',function(e){if(e.key==='Enter')$('seal').click()});
-function track(){try{if(sessionStorage.getItem('op:'+guest))return;sessionStorage.setItem('op:'+guest,'1')}catch(x){}
+var DBG=/[?&]debug=1/.test(location.search);
+function track(){try{if(!DBG){if(sessionStorage.getItem('op:'+guest))return;sessionStorage.setItem('op:'+guest,'1')}}catch(x){}
 var d={name:guest,device:navigator.userAgent.slice(0,140),timezone:(Intl.DateTimeFormat().resolvedOptions().timeZone||''),language:navigator.language||'',screen:screen.width+'x'+screen.height,opened_at:new Date().toString(),_subject:'Invitation opened: '+guest,_template:'table',_captcha:'false'};
-['contact@khansarfaraz.com','khansarfaraz.2906@gmail.com'].forEach(function(a){try{fetch('https://formsubmit.co/ajax/'+a,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d),keepalive:true}).catch(function(){})}catch(x){}})}
+['contact@khansarfaraz.com','khansarfaraz.2906@gmail.com'].forEach(function(a){try{fetch('https://formsubmit.co/ajax/'+a,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d),keepalive:true}).then(function(r){return r.text().then(function(t){if(DBG)alert(a+' -> '+r.status+': '+t.slice(0,250))})}).catch(function(e){if(DBG)alert(a+' failed: '+e)})}catch(x){if(DBG)alert('Error: '+x)}})}
 function fl(x,y,s){return '<use href="#fl" x="'+(x-s/2)+'" y="'+(y-s/2)+'" width="'+s+'" height="'+s+'"/>'}
 function lf(x,y,s,r,c,d){return '<use href="#lf" '+(c?'class="'+c+'" style="animation-delay:'+d+'s" ':'')+'x="'+(x-s/2)+'" y="'+(y-s/4)+'" width="'+s+'" height="'+s/2+'" transform="rotate('+r+' '+x+' '+y+')"/>'}
 function cl(cx,cy,k){var s='',i,r,a=[[0,0,44],[-34,10,26],[34,10,26],[-18,-22,20],[18,-22,20],[0,28,22]];
